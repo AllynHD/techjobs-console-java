@@ -1,6 +1,7 @@
 package org.launchcode.techjobs.console;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -45,8 +46,11 @@ public class TechJobs {
 
                     System.out.println("\n*** All " + columnChoices.get(columnChoice) + " Values ***");
 
+                    results.sort(String.CASE_INSENSITIVE_ORDER);
+
                     // Print list of skills, employers, etc
                     for (String item : results) {
+
                         System.out.println(item);
                     }
                 }
@@ -61,9 +65,12 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+                    printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
+                    if (JobData.findByColumnAndValue(searchField, searchTerm).isEmpty()) {
+                        System.out.println("That search yielded no jobs.");
+                    }
                 }
             }
         }
@@ -111,6 +118,29 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+        for (HashMap<String, String> job : someJobs) {
+
+            System.out.println("*****");
+
+            for (HashMap.Entry<String, String> entry : job.entrySet()){
+
+                String key = entry.getKey();
+                String value = entry.getValue();
+                System.out.println(key + ": " + value);
+
+            }
+
+            System.out.println("*****");
+            System.out.print("\n");
+            //System.out.println("printJobs is not implemented yet");
     }
-}
+}}
+
+/*public static void printMap(Map mp) {
+    Iterator it = mp.entrySet().iterator();
+    while (it.hasNext()) {
+        Map.Entry pair = (Map.Entry)it.next();
+        System.out.println(pair.getKey() + " = " + pair.getValue());
+        it.remove(); // avoids a ConcurrentModificationException
+    }
+}*/
