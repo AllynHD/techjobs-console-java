@@ -1,7 +1,6 @@
 package org.launchcode.techjobs.console;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -121,12 +120,9 @@ public class TechJobs {
         for (HashMap<String, String> job : someJobs) {
 
             System.out.println("*****");
-
             for (HashMap.Entry<String, String> entry : job.entrySet()){
 
-                String key = entry.getKey();
-                String value = entry.getValue();
-                System.out.println(key + ": " + value);
+                System.out.println(entry.getKey() + ": " + entry.getValue());
 
             }
 
@@ -134,13 +130,5 @@ public class TechJobs {
             System.out.print("\n");
             //System.out.println("printJobs is not implemented yet");
     }
-}}
-
-/*public static void printMap(Map mp) {
-    Iterator it = mp.entrySet().iterator();
-    while (it.hasNext()) {
-        Map.Entry pair = (Map.Entry)it.next();
-        System.out.println(pair.getKey() + " = " + pair.getValue());
-        it.remove(); // avoids a ConcurrentModificationException
-    }
-}*/
+}
+}
