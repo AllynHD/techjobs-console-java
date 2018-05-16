@@ -51,8 +51,8 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        ArrayList<HashMap<String, String>> safeJobs = allJobs;
-
+        ArrayList<HashMap<String, String>> safeJobs = new ArrayList<HashMap<String, String>>(allJobs);
+        safeJobs.addAll(allJobs);
         return safeJobs;
     }
 
